@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>UB快速学生评价生成器</title>
+</head>
+
+<body>
+	<div id="app" style="margin: 100px">
+		<label for="stu_name">学生姓名</label>
+		<input id="stu_name" placeholder="在这里输入学生姓名，总不能懒到名字都不想写把？" style="width: 800px" v-model="stu_name">
+		<br>
+		<b>课程</b>
+		<br>
+		<input type="radio" id="C++/NOIP" value="C++/NOIP" v-model="lesson_name">
+		<label for="C++/NOIP">C++/NOIP</label>
+		<br>
+		<input type="radio" id="Python" value="Python" v-model="lesson_name">
+		<label for="Python">Python</label>
+		<br>
+		<input type="radio" id="Scratch" value="Scratch" v-model="lesson_name">
+		<label for="Scratch">Scratch</label>
+		<br>
+		<b>知识点</b>
+		<br>
+		<select v-model="lesson_content">
+			<option v-for="option in lesson_contents" v-bind:value="option">
+				{{ option }}
+			</option>
+		</select>
+		<br>
+		<b>表现评价</b>
+		<br>
+		<div v-for="option in show_comments">
+			<input type="checkbox" v-bind:id="option" v-bind:value="option" v-model="show_comment">
+			<label v-bind:for="option">{{ option }}</label>
+		</div>
+		<br>
+		<b>总结</b>
+		<br>
+		<select v-model="final_comment">
+			<option v-for="option in final_comments" v-bind:value="option">
+				{{ option }}
+			</option>
+		</select>
+		<br>
+		<h3>生成结果</h3>
+		<textarea style="width: 800px;height: 600px;;font-size: 18px">在本节奥创熊{{ lesson_name }}课程中，{{ stu_name }}学习了{{ lesson_content }}，上课时{{ stu_name }}{{ show_comment.join("") }}{{ final_comment }}课后作业不要忘记完成，有问题可以在群里随时提问！
+		</textarea>
+
+	</div>
+	<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+	<script src="app.js"></script>
+</body>
+
+</html>
