@@ -3,55 +3,84 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>UB快速学生评价生成器</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="renderer" content="webkit">
+	<link rel="icon" type="image/png" href="favicon.png">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>UB快速学生评价生成辅助工具</title>
+	<link href="https://cdn.bootcss.com/amazeui/2.7.2/css/amazeui.min.css" rel="stylesheet">
+	<link href="app.css" rel="stylesheet">
 </head>
 
 <body>
-	<div id="app" style="margin: 100px">
-		<label for="stu_name">学生姓名</label>
-		<input id="stu_name" placeholder="在这里输入学生姓名，总不能懒到名字都不想写把？" style="width: 800px" v-model="stu_name">
-		<br>
-		<b>课程</b>
-		<br>
-		<input type="radio" id="C++/NOIP" value="C++/NOIP" v-model="lesson_name">
-		<label for="C++/NOIP">C++/ NOIP</label>
-		<br>
-		<input type="radio" id="Python" value="Python" v-model="lesson_name">
-		<label for="Python">Python</label>
-		<br>
-		<input type="radio" id="Scratch" value="Scratch" v-model="lesson_name">
-		<label for="Scratch">Scratch</label>
-		<br>
-		<b>知识点</b>
-		<br>
-		<select v-model="lesson_content">
-			<option v-for="option in lesson_contents" v-bind:value="option">
-				{{ option }}
-			</option>
-		</select>
-		<br>
-		<b>表现评价</b>
-		<br>
-		<div v-for="option in show_comments">
-			<input type="checkbox" v-bind:id="option" v-bind:value="option" v-model="show_comment">
-			<label v-bind:for="option">{{ option }}</label>
+	<div class="header">
+		<div class="am-g">
+			<h1>UB快速学生评价生成辅助工具</h1>
+			<p>工具提高效率，评价还需认真</p>
 		</div>
-		<br>
-		<b>总结</b>
-		<br>
-		<select v-model="final_comment">
-			<option v-for="option in final_comments" v-bind:value="option">
-				{{ option }}
-			</option>
-		</select>
-		<br>
-		<h3>生成结果</h3>
-		<textarea style="width: 800px;height: 600px;;font-size: 18px">在本节奥创熊{{ lesson_name }}课程中，{{ stu_name }}学习了{{ lesson_content }}，上课时{{ stu_name }}{{ show_comment.join("") }}{{ final_comment }}课后作业不要忘记完成，有问题可以在群里随时提问！
-		</textarea>
-
+		<hr />
 	</div>
+	<div id="app" class="am-g">
+		<div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
+			<div class="am-form">
+				<div class="am-form-group">
+					<label for="stu_name">学生姓名: </label>
+					<input id="stu_name" placeholder="黄金超" v-model="stu_name">
+				</div>
+				<div class="am-form-group">
+					<label>课程: </label>
+					<input type="radio" class="am-checkbox-inline am-radio-inline" id="C++/NOIP" value="C++/NOIP"
+						v-model="lesson_name">
+					<label for="C++/NOIP">C++/ NOIP</label>
+					<input type="radio" class="am-checkbox-inline am-radio-inline" id="Python" value="Python"
+						v-model="lesson_name">
+					<label for="Python">Python</label>
+					<input type="radio" class="am-checkbox-inline am-radio-inline" id="Scratch" value="Scratch"
+						v-model="lesson_name">
+					<label for="Scratch">Scratch</label>
+				</div>
+				<div class="am-form-group">
+					<label>知识点</label>
+					<select v-model="lesson_content">
+						<option v-for="option in lesson_contents" v-bind:value="option">
+							{{ option }}
+						</option>
+					</select>
+				</div>
+				<div class="am-form-group">
+					<label>表现评价</label>
+					<div v-for="option in show_comments">
+						<label class="am-btn am-btn-default show-comment am-checkbox-inline">
+							<input type="checkbox" v-bind:id="option" v-bind:value="option" v-model="show_comment">
+							{{ option }}
+						</label>
+					</div>
+
+				</div>
+				<div class="am-form-group">
+					<label>总结</label>
+					<select v-model="final_comment">
+						<option v-for="option in final_comments" v-bind:value="option">
+							{{ option }}
+						</option>
+					</select>
+				</div>
+				<div class="am-form-group">
+					<label>生成结果</label>
+					<textarea
+						rows="7">在本节奥创熊{{ lesson_name }}课程中，{{ stu_name }}学习了{{ lesson_content }}，上课时{{ stu_name }}{{ show_comment.join("，") }}，{{ final_comment }}课后作业不要忘记完成，有问题可以在群里随时提问！</textarea>
+				</div>
+			</div>
+			<hr>
+			<p>页面/功能修改建议，语料添加请@代建杉，已有规划：<a href="https://github.com/wood3/quick-comment/blob/master/README.md">TODOs</a>
+			</p>
+		</div>
+	</div>
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/amazeui/2.7.2/js/amazeui.min.js"></script>
 	<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
 	<script src="app.js"></script>
+
 </body>
 
 </html>
