@@ -12,6 +12,10 @@
 	font-size: 14px;
 }
 
-.show-comment {
+.check-block {
+	display: inline;
+}
+
+.check-label {
 	margin: 2px;
 }

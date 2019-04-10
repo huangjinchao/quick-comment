@@ -24,51 +24,54 @@
 		<div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
 			<div class="am-form">
 				<div class="am-form-group">
-					<label for="stu_name">学生姓名: </label>
+					<label for="stu_name">学生姓名：</label>
 					<input id="stu_name" placeholder="黄金超" v-model="stu_name">
-				</div>
+				</div>				
 				<div class="am-form-group">
-					<label>课程: </label>
-					<input type="radio" class="am-checkbox-inline am-radio-inline" id="C++/NOIP" value="C++/NOIP"
-						v-model="lesson_name">
-					<label for="C++/NOIP">C++/ NOIP</label>
-					<input type="radio" class="am-checkbox-inline am-radio-inline" id="Python" value="Python"
-						v-model="lesson_name">
-					<label for="Python">Python</label>
-					<input type="radio" class="am-checkbox-inline am-radio-inline" id="Scratch" value="Scratch"
-						v-model="lesson_name">
-					<label for="Scratch">Scratch</label>
-				</div>
-				<div class="am-form-group">
-					<label>知识点</label>
-					<select v-model="lesson_content">
-						<option v-for="option in lesson_contents" v-bind:value="option">
+					<label>课程：</label>
+					<select v-model="lesson_name">
+						<option v-for="option in lesson_names" v-bind:value="option">
 							{{ option }}
 						</option>
 					</select>
+				</div>				
+				<div class="am-form-group">
+					<label>知识点（后面有素材后实现点击知识点显示课程总结）：</label>
+					<div class="check-block" v-for="option in lesson_contents[lesson_name]">
+						<label class="am-btn am-btn-primary am-radius check-label am-checkbox-inline">
+							<input type="checkbox" v-bind:id="option" v-bind:value="option" v-model="lesson_content">
+							{{ option }}
+						</label>
+					</div>
 				</div>
 				<div class="am-form-group">
-					<label>表现评价</label>
-					<div v-for="option in show_comments">
-						<label class="am-btn am-btn-default show-comment am-checkbox-inline">
+					<label>表现评价：</label>
+					<div class="check-block" v-for="option in show_comments_bads">
+						<label class="am-btn am-btn-danger am-radius check-label am-checkbox-inline">
 							<input type="checkbox" v-bind:id="option" v-bind:value="option" v-model="show_comment">
 							{{ option }}
 						</label>
 					</div>
-
-				</div>
-				<div class="am-form-group">
-					<label>总结</label>
-					<select v-model="final_comment">
-						<option v-for="option in final_comments" v-bind:value="option">
+					<div class="check-block" v-for="option in show_comments_goods">
+						<label class="am-btn am-btn-success am-radius check-label am-checkbox-inline">
+							<input type="checkbox" v-bind:id="option" v-bind:value="option" v-model="show_comment">
 							{{ option }}
-						</option>
-					</select>
+						</label>
+					</div>
 				</div>
 				<div class="am-form-group">
-					<label>生成结果</label>
+					<label>总结（上面点完后可以在这里二次编辑调整）：</label>
+					<div class="check-block" v-for="option in final_comments">
+						<label class="am-btn am-btn-secondary am-radius check-label am-checkbox-inline">
+							<input type="checkbox" v-bind:id="option" v-bind:value="option" v-model="final_comment">
+							{{ option }}
+						</label>
+					</div>
+				</div>
+				<div class="am-form-group">
+					<label>生成结果：</label>
 					<textarea
-						rows="7">在本节奥创熊{{ lesson_name }}课程中，{{ stu_name }}学习了{{ lesson_content }}，上课时{{ stu_name }}{{ show_comment.join("，") }}，{{ final_comment }}课后作业不要忘记完成，有问题可以在群里随时提问！</textarea>
+						rows="7">在本节奥创熊{{ lesson_name }}课程中，{{ stu_name }}学习了{{ lesson_content.join("，") }}。上课时{{ stu_name }}{{ show_comment.join("，") }}。{{ final_comment.join("，") }}。课后作业不要忘记完成，有问题可以在群里随时提问！</textarea>
 				</div>
 			</div>
 			<hr>
