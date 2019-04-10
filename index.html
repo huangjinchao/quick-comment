@@ -60,7 +60,7 @@
 					</div>
 				</div>
 				<div class="am-form-group">
-					<label>总结（上面点完后可以在这里二次编辑调整）：</label>
+					<label>总结：</label>
 					<div class="check-block" v-for="option in final_comments">
 						<label class="am-btn am-btn-secondary am-radius check-label am-checkbox-inline">
 							<input type="checkbox" v-bind:id="option" v-bind:value="option" v-model="final_comment">
@@ -69,7 +69,7 @@
 					</div>
 				</div>
 				<div class="am-form-group">
-					<label>生成结果：</label>
+					<label>生成结果（上面点完后可以在这里二次编辑调整）：</label>
 					<textarea
 						rows="7">在本节奥创熊{{ lesson_name }}课程中，{{ stu_name }}学习了{{ lesson_content.join("，") }}。上课时{{ stu_name }}{{ show_comment.join("，") }}。{{ final_comment.join("，") }}。课后作业不要忘记完成，有问题可以在群里随时提问！</textarea>
 				</div>
