@@ -39,8 +39,8 @@
 					<label>知识点（后面有素材后实现点击知识点显示课程总结）：</label>
 					<div class="check-block" v-for="option in lesson_contents[lesson_name]">
 						<label class="am-btn am-btn-primary am-radius check-label am-checkbox-inline">
-							<input type="checkbox" v-bind:id="option" v-bind:value="option" v-model="lesson_content">
-							{{ option }}
+							<input type="checkbox" v-bind:id="option.title" v-bind:value="option.content" v-model="lesson_content">
+							{{ option.title }}
 						</label>
 					</div>
 				</div>
@@ -69,10 +69,11 @@
 					</div>
 				</div>
 				<div class="am-form-group">
-					<label>生成结果（上面点完后可以在这里二次编辑调整）：</label>
-					<textarea
-						rows="7">在本节奥创熊{{ lesson_name }}课程中，{{ stu_name }}学习了{{ lesson_content.join("，") }}。上课时{{ stu_name }}{{ show_comment.join("，") }}。{{ final_comment.join("，") }}。课后作业不要忘记完成，有问题可以在群里随时提问！</textarea>
-				</div>
+					<label>生成结果（这里可以二次编辑润色，比如消极积极评价之间加一个“但是”）：</label>
+					<textarea style="font-size: 26px;"
+						rows="8">今天{{ stu_name }}学习了{{ lesson_content.join("，以及") }}。上课时{{ stu_name }}{{ show_comment.join("，") }}。{{ final_comment.join("") }}课后作业不要忘记完成，有问题可以在群里随时提问！</textarea>
+						<input type=button value=重置 class="am-btn check-label" onclick="location.reload()">
+					</div>
 			</div>
 			<hr>
 			<p>页面/功能修改建议，语料添加请@代建杉，已有规划：<a href="https://github.com/wood3/quick-comment/blob/master/README.md">TODOs</a>
